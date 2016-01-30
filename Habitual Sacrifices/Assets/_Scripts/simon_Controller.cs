@@ -85,7 +85,8 @@ public class simon_Controller : MonoBehaviour {
             }
             if(selectIndex != newObjectIndex)
             {
-                Debug.Log("You Suck!");
+                ServiceLocator.GetSoundSystem().PlaySound("badSound");
+                ServiceLocator.GetGameManager().LoseLife();
             }
         }
 
