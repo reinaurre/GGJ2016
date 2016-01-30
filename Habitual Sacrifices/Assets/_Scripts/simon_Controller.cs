@@ -12,6 +12,7 @@ public class simon_Controller : MonoBehaviour {
 
 	public GameObject objectCam;
 	public GameObject objectCell;
+    public Transform select;
 
     public Transform[] spawnPoints;
 
@@ -23,10 +24,15 @@ public class simon_Controller : MonoBehaviour {
 	Animator objectCamAnim;
     Transform objectCellTransform;
     Transform newObjectObj;
-    
+    float axisOld = 0;
+    float axisNew;
+    int selectIndex = 0;
+    int selection = 4;
+    int newObjectIndex;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 
         	
 		objectAnim = objectCell.GetComponent <Animator> ();
@@ -48,7 +54,8 @@ public class simon_Controller : MonoBehaviour {
     void Spawn(string name)
     {
         Transform[] variations = ingredientMap[name];
-        int indexToObject = (int)Random.Range(0.0f, variations.Length);
+        int indexToObject = (int)Random.Range(0.0f, variations.Length - 1);
+        newObjectIndex = indexToObject;
 
         for (int i = 0; i < spawnPoints.Length; i++)
         {
@@ -56,7 +63,7 @@ public class simon_Controller : MonoBehaviour {
             newObject.parent = spawnPoints[i].transform;
             if (i == indexToObject) {
                 newObjectObj = Instantiate(variations[i], objectCellTransform.position, objectCellTransform.rotation) as Transform;
-                newObjectObj.parent = spawnPoints[i].transform;
+                newObjectObj.parent = objectCellTransform.transform;
             }
         }
     }
@@ -69,6 +76,63 @@ public class simon_Controller : MonoBehaviour {
 			objectAnim.SetTrigger ("blur_rotation");
 			objectCamAnim.SetTrigger ("blur_rotation");
 		}
+        
+        if (Input.GetButtonDown("Action"))
+        {
+            if(selectIndex == newObjectIndex)
+            {
+                Debug.Log("win!");
+            }
+            if(selectIndex != newObjectIndex)
+            {
+                Debug.Log("You Suck!");
+            }
+        }
+
+        //Util.Log("{0}", Input.GetAxis("Horizontal"));
+
+        if (Input.GetAxis("Horizontal") != axisOld)
+        {
+            axisNew = Input.GetAxis("Horizontal");
+            if(axisOld == 0)
+            {
+                if (axisNew > axisOld)
+                {
+                    selectIndex += 1;
+                    if (selectIndex == 4)
+                    {
+                        selectIndex = 0;
+                    }
+                    select.parent = spawnPoints[selectIndex].transform;
+                }
+                else if (axisNew < axisOld)
+                {
+                    selectIndex -= 1;
+                    if (selectIndex == -1)
+                    {
+                        selectIndex = 3;
+                    }
+                    select.parent = spawnPoints[selectIndex].transform;   
+                }
+
+                Transform[] childrenTransforms = spawnPoints[selectIndex].GetComponentsInChildren<Transform>();
+
+                int childCount = childrenTransforms.Length;
+
+                if (childrenTransforms != null)
+                {
+                    for (int i = childCount - 1; i >= 0; i--)
+                    {
+                        if (childrenTransforms[i].gameObject.tag == "ingredient")
+                        {
+                            selection = i;
+                        }
+                    }
+                }
+            }
+            
+            axisOld = axisNew;
+        }
 
 	}
 }
