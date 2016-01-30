@@ -2,6 +2,7 @@ using UnityEngine;
 
 [System.Serializable]
 class SpawnGroup {
+    public bool good = true;
     public Transform[] prefabs = null;
 }
 
@@ -31,7 +32,15 @@ class Spawner : MonoBehaviour {
 
             SpawnGroup groupToSpawn = Util.randomElemIn(spawnGroups);
             Transform thingToSpawn = Util.randomElemIn(groupToSpawn.prefabs);
-            Instantiate(thingToSpawn, spawnPosition, Quaternion.identity);
+            Transform prefab = Instantiate(thingToSpawn, spawnPosition, Quaternion.identity) as Transform;
+
+            prefab.gameObject.AddComponent<FallingThing>();
+            prefab.gameObject.AddComponent<HitReceiver>();
+            if (groupToSpawn.good) {
+                prefab.gameObject.AddComponent<GoodHitHandler>();
+            } else {
+                prefab.gameObject.AddComponent<BadHitHandler>();
+            }
 
             spawnTimer -= spawnTime;
             spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
