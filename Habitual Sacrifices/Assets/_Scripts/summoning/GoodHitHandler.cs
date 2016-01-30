@@ -13,6 +13,7 @@ class GoodHitHandler : MonoBehaviour {
         Destroy(this.gameObject);
 
         ServiceLocator.GetSoundSystem().PlaySound(soundOnHit);
-        //ServiceLocator.GetGameManager().AddScore();
+        ServiceLocator.GetGameManager().IncrementScore(100);
+        Util.Log(ServiceLocator.GetGameManager().Score);
     }
 }
