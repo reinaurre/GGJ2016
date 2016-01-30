@@ -1,0 +1,4 @@
+sceneSetups:
+- path: C:/development/game dev/Games/Flamboyant Battle Boy/Assets/_Scenes/StartMenu.unity
+  isLoaded: 1
+  isActive: 1
