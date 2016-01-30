@@ -1,8 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(HitReceiver))]
-class GoodHitHandler : MonoBehaviour {
-    public string soundOnHit = "whoosh";
+class BadHitHandler : MonoBehaviour {
+    public string soundOnHit = "badSound";
 
     public void Awake() {
         HitReceiver receiver = GetComponent<HitReceiver>();
@@ -10,9 +10,8 @@ class GoodHitHandler : MonoBehaviour {
     }
 
     public void HandleHit() {
-        Destroy(this.gameObject);
-
+        /* Do some indicator thing to show something bad happened */
         ServiceLocator.GetSoundSystem().PlaySound(soundOnHit);
-        //ServiceLocator.GetGameManager().AddScore();
+        //ServiceLocator.GetGameManager().LoseLife();
     }
 }
