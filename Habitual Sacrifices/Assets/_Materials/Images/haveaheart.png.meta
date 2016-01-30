@@ -1,0 +1,272 @@
+fileFormatVersion: 2
+guid: 73a767413cfd4204895cea8cf6401519
+timeCreated: 1454180297
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: haveaheart_0
+    21300002: haveaheart_1
+    21300004: haveaheart_2
+    21300006: haveaheart_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.25, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 60, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: haveaheart_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6
+        width: 62
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: 42.5}
+        - {x: -10, y: 42.5}
+        - {x: -31, y: 40.5}
+        - {x: -31, y: -24.5}
+        - {x: -14, y: -38.5}
+        - {x: 15, y: -38.5}
+        - {x: 23, y: -37.5}
+        - {x: 31, y: -20.5}
+        - {x: 31, y: 21.5}
+        - {x: 28, y: 40.5}
+    - name: haveaheart_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 3
+        width: 61
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: -35.5}
+        - {x: -21.5, y: -36.5}
+        - {x: -21.5, y: -42.5}
+        - {x: -13.5, y: -42.5}
+        - {x: -12.5, y: -41.5}
+        - {x: -12.5, y: -37.5}
+        - {x: -14.5, y: -35.5}
+      - - {x: 20.5, y: -37.5}
+        - {x: 20.5, y: -42.5}
+        - {x: 30.5, y: -42.5}
+        - {x: 30.5, y: -35.5}
+        - {x: 22.5, y: -35.5}
+      - - {x: -25.5, y: 42.5}
+        - {x: -25.5, y: -35.5}
+        - {x: 30.5, y: -35.5}
+        - {x: 30.5, y: 42.5}
+      - - {x: 5.5, y: -10.5}
+        - {x: 3.5, y: -12.5}
+        - {x: 3.5, y: -16.5}
+        - {x: 5.5, y: -18.5}
+        - {x: 9.5, y: -18.5}
+        - {x: 11.5, y: -16.5}
+        - {x: 11.5, y: -12.5}
+        - {x: 9.5, y: -10.5}
+      - - {x: -4.5, y: -14.5}
+        - {x: 3.5, y: -14.5}
+        - {x: 3.5, y: -6.5}
+        - {x: -2.5, y: -6.5}
+        - {x: -4.5, y: -7.5}
+    - name: haveaheart_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 4
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+      - - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+      - - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+    - name: haveaheart_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+      - - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+      - - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+        - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+      - - {x: -22, y: 39.5}
+        - {x: -31, y: 37.5}
+        - {x: -31, y: -27.5}
+        - {x: -13, y: -39.5}
+        - {x: 18, y: -39.5}
+        - {x: 31, y: -18.5}
+        - {x: 31, y: 27.5}
+        - {x: 30, y: 39.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
