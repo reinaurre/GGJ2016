@@ -10,6 +10,7 @@ class CursorInputController : MonoBehaviour {
     public float maxSpeedUp = 3.0f;
 
     public float castLeeway = 0.5f;
+    public Transform castPosition = null;
 
     private RectTransform parentRectTransform;
 
@@ -37,15 +38,18 @@ class CursorInputController : MonoBehaviour {
 
         if (activate) {
             RaycastHit hitInfo;
+            Vector2 castFromPos = new Vector2(castPosition.position.x, castPosition.position.y);
             Camera mainCamera = Camera.main;
-            Vector3 screenPoint = new Vector3(pos.x, pos.y, mainCamera.nearClipPlane);
+            Vector3 screenPoint = new Vector3(castFromPos.x, castFromPos.y, mainCamera.nearClipPlane);
             Ray rayFromCamera = mainCamera.ScreenPointToRay(screenPoint);
             Vector3 halfExtents = new Vector3(castLeeway, castLeeway, castLeeway);
             bool hit = Physics.BoxCast(rayFromCamera.origin, halfExtents, rayFromCamera.direction, out hitInfo);
 
             if (hit) {
                 HitReceiver hitReceiver = hitInfo.collider.GetComponent<HitReceiver>();
-                hitReceiver.ReceiveHit();
+                if (hitReceiver != null) {
+                    hitReceiver.ReceiveHit();
+                }
             }
         }
     }

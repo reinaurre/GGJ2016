@@ -1,7 +1,12 @@
 using UnityEngine;
 
+[System.Serializable]
+class SpawnGroup {
+    public Transform[] prefabs = null;
+}
+
 class Spawner : MonoBehaviour {
-    public Transform[] thingsToSpawn = null;
+    public SpawnGroup[] spawnGroups = null;
 
     public float minSpawnTime = 0.5f;
     public float maxSpawnTime = 1.0f;
@@ -24,7 +29,8 @@ class Spawner : MonoBehaviour {
             Vector3 spawnPosition = transform.position;
             spawnPosition.x += Random.Range(-spawnOffset, spawnOffset);
 
-            Transform thingToSpawn = Util.randomElemIn(thingsToSpawn);
+            SpawnGroup groupToSpawn = Util.randomElemIn(spawnGroups);
+            Transform thingToSpawn = Util.randomElemIn(groupToSpawn.prefabs);
             Instantiate(thingToSpawn, spawnPosition, Quaternion.identity);
 
             spawnTimer -= spawnTime;
