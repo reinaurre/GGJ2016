@@ -9,6 +9,7 @@ public class Ingredient {
 }
 
 public class simon_Controller : MonoBehaviour {
+    public float maxScore = 1000.0f;
 
 	public GameObject objectCam;
 	public GameObject objectCell;
@@ -29,7 +30,6 @@ public class simon_Controller : MonoBehaviour {
     int selectIndex = 0;
     int selection = 4;
     int newObjectIndex;
-
 
     // Use this for initialization
     void Start () {
@@ -73,20 +73,16 @@ public class simon_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    
-        // to be removed testing purposes
-		
+        GameManager manager = ServiceLocator.GetGameManager();
         
         if (Input.GetButtonDown("Action"))
         {
-            if(selectIndex == newObjectIndex)
-            {
-                Debug.Log("win!");
-            }
-            if(selectIndex != newObjectIndex)
-            {
+            if(selectIndex == newObjectIndex) {
+                manager.IncrementScore(maxScore * manager.GetTimeFractionLeft());
+                manager.WinLevelEarly();
+            } else {
                 ServiceLocator.GetSoundSystem().PlaySound("badSound");
-                ServiceLocator.GetGameManager().LoseLife();
+                manager.LoseLife();
             }
         }
 

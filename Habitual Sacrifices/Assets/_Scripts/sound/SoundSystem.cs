@@ -26,6 +26,7 @@ public class SoundSystem : MonoBehaviour {
     }
 
     void Start() {
+        Object.DontDestroyOnLoad(this.gameObject);
         sources = new AudioSource[numberOfSources];
         for (int i = 0; i < numberOfSources; i++) {
             AudioSource source = Instantiate(audioSourcePrefab, transform.position, transform.rotation) as AudioSource;

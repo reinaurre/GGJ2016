@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
     private float _gameTimer;
     public float GameTimer { get { return _gameTimer; } }
 
-    private string[] gameScenes = { "Summoning" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
     private bool gameActive;
     private bool levelActive;
 
@@ -126,6 +125,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    public void WinLevelEarly()
+    {
+        winComboCount++;
+        ChangeLevel();
+    }
+
     private void ChangeLevel()
     {
         levelsCompleted++;
@@ -134,23 +139,16 @@ public class GameManager : MonoBehaviour
 
     private void LoadRandomScene()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
-        int currentNum = 0;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int nextScene = 0;
 
-        if (currentScene != "Main")
-        {
-            currentNum = System.Array.IndexOf(gameScenes, currentScene);
+        while (nextScene == 0 || nextScene == currentScene) {
+            nextScene = Random.Range(0, SceneManager.sceneCountInBuildSettings-1);
         }
-
-        int num = 0;
-
-        while(num == 0 || num == currentNum)
-        {
-            num = Random.Range(1, gameScenes.Length);
-        }
+        Util.Log(nextScene);
 
         _levelTimer = 0.0f;
-        SceneManager.LoadScene(num);
+        SceneManager.LoadScene(nextScene);
     }
 
     void OnLevelWasLoaded(int level)
@@ -163,8 +161,11 @@ public class GameManager : MonoBehaviour
         _modifiedLevelTime = Mathf.Pow(1.2f, -levelsCompleted) * (maxLevelTime - minLevelTime) + minLevelTime;
     }
 
+    public float GetTimeFractionLeft() {
+        return 1.0f - (_modifiedLevelTime - minLevelTime) / (maxLevelTime - minLevelTime);
+    }
+
     public float GetSpeedFactor(float maxSpeedUp) {
-        float fraction = 1.0f - (_modifiedLevelTime - minLevelTime) / (maxLevelTime - minLevelTime);
-        return (1.0f + maxSpeedUp * fraction) * Time.deltaTime;
+        return (1.0f + maxSpeedUp * GetTimeFractionLeft()) * Time.deltaTime;
     }
 }
