@@ -12,6 +12,7 @@ class BadHitHandler : MonoBehaviour {
     public void HandleHit() {
         /* Do some indicator thing to show something bad happened */
         ServiceLocator.GetSoundSystem().PlaySound(soundOnHit);
-        //ServiceLocator.GetGameManager().LoseLife();
+        ServiceLocator.GetGameManager().LoseLife();
+        Util.Log(ServiceLocator.GetGameManager().Lives);
     }
 }

@@ -5,7 +5,8 @@ class ServiceLocator {
     private static GameManager gameManager = null;
 
     static private void GetServiceWithTag<T>(string tag, ref T service) {
-        if (service == null) {
+        /* The second Equals check is true when the service is destroyed */
+        if (service == null || service.Equals(null)) {
             GameObject go = GameObject.FindWithTag(tag);
             if (go != null) {
                 service = go.GetComponent<T>();

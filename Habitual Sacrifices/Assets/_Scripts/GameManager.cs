@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private float _gameTimer;
     public float GameTimer { get; set; }
 
-    private string[] gameScenes = { "Simon" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+    private string[] gameScenes = { "Summoning" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
     private bool gameActive;
     private bool levelActive;
 
@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
         levelActive = false;
         modifiedLevelTime = maxLevelTime;
         SceneManager.LoadScene("Main");
+
+        Lives = 3;
 	}
 
     void Update ()
