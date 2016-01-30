@@ -45,7 +45,9 @@ class CursorInputController : MonoBehaviour {
 
             if (hit) {
                 HitReceiver hitReceiver = hitInfo.collider.GetComponent<HitReceiver>();
-                hitReceiver.ReceiveHit();
+                if (hitReceiver != null) {
+                    hitReceiver.ReceiveHit();
+                }
             }
         }
     }
