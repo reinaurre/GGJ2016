@@ -1,8 +1,8 @@
 using UnityEngine;
 
 class FallingThing : MonoBehaviour {
-    public float fallSpeed = 1.0f;
-    public float rotationSpeed = 2.0f;
+    public float fallSpeed = 3.0f;
+    public float rotationSpeed = 100.0f;
     public float maxSpeedUp = 3.0f;
 
     private Quaternion originalRot;
