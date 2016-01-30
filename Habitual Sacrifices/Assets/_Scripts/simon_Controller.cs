@@ -45,7 +45,7 @@ public class simon_Controller : MonoBehaviour {
             ingredientMap[ingredient.name] = ingredient.variations;
         }
 
-        int indexToSpawn = (int)Random.Range(0.0f, ingredients.Length);
+        int indexToSpawn = (int)Random.Range(0.0f, ingredients.Length - 1);
         Ingredient ingredientToSpawn = ingredients[indexToSpawn];
 
         Spawn(ingredientToSpawn.name);
