@@ -49,7 +49,10 @@ public class simon_Controller : MonoBehaviour {
         Ingredient ingredientToSpawn = ingredients[indexToSpawn];
 
         Spawn(ingredientToSpawn.name);
-	}
+
+        objectAnim.SetTrigger("blur_rotation");
+        objectCamAnim.SetTrigger("blur_rotation");
+    }
 
     void Spawn(string name)
     {
@@ -72,10 +75,7 @@ public class simon_Controller : MonoBehaviour {
 	void Update () {
 	    
         // to be removed testing purposes
-		if (Input.GetButtonDown ("Start")) {
-			objectAnim.SetTrigger ("blur_rotation");
-			objectCamAnim.SetTrigger ("blur_rotation");
-		}
+		
         
         if (Input.GetButtonDown("Action"))
         {
@@ -104,6 +104,7 @@ public class simon_Controller : MonoBehaviour {
                         selectIndex = 0;
                     }
                     select.parent = spawnPoints[selectIndex].transform;
+                    select.position = spawnPoints[selectIndex].position;
                 }
                 else if (axisNew < axisOld)
                 {
@@ -112,7 +113,8 @@ public class simon_Controller : MonoBehaviour {
                     {
                         selectIndex = 3;
                     }
-                    select.parent = spawnPoints[selectIndex].transform;   
+                    select.parent = spawnPoints[selectIndex].transform;
+                    select.position = spawnPoints[selectIndex].position;
                 }
 
                 Transform[] childrenTransforms = spawnPoints[selectIndex].GetComponentsInChildren<Transform>();
