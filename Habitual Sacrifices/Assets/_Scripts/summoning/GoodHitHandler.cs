@@ -14,6 +14,5 @@ class GoodHitHandler : MonoBehaviour {
 
         ServiceLocator.GetSoundSystem().PlaySound(soundOnHit);
         ServiceLocator.GetGameManager().IncrementScore(100);
-        Util.Log(ServiceLocator.GetGameManager().Score);
     }
 }

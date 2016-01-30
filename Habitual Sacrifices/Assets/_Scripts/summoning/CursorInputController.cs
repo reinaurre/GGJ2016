@@ -7,6 +7,7 @@ class CursorInputController : MonoBehaviour {
 
     public float xMoveSensitivity = 1.0f;
     public float yMoveSensitivity = 1.0f;
+    public float maxSpeedUp = 3.0f;
 
     public float castLeeway = 0.5f;
 
@@ -21,9 +22,12 @@ class CursorInputController : MonoBehaviour {
         float yAxisVal = Input.GetAxis(yAxis);
         bool activate = Input.GetButtonDown(activateButton);
 
+        GameManager manager = ServiceLocator.GetGameManager();
+        float speedFactor = manager.GetSpeedFactor(maxSpeedUp);
+
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
-        pos.x += xAxisVal * xMoveSensitivity;
-        pos.y += yAxisVal * yMoveSensitivity;
+        pos.x += xAxisVal * xMoveSensitivity * speedFactor;
+        pos.y += yAxisVal * yMoveSensitivity * speedFactor;
 
         Rect parentSize = parentRectTransform.rect;
         pos.x = Mathf.Clamp(pos.x, 0.0f, parentSize.width);

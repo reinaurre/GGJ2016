@@ -6,6 +6,7 @@ class Spawner : MonoBehaviour {
     public float minSpawnTime = 0.5f;
     public float maxSpawnTime = 1.0f;
     public float spawnOffset = 10.0f;
+    public float maxSpeedUp = 3.0f;
 
     private float spawnTimer = 0.0f;
     private float spawnTime = 0.0f;
@@ -15,7 +16,10 @@ class Spawner : MonoBehaviour {
     }
 
     void Update() {
-        spawnTimer += Time.deltaTime;
+        GameManager manager = ServiceLocator.GetGameManager();
+        float speedFactor = manager.GetSpeedFactor(maxSpeedUp);
+
+        spawnTimer += speedFactor;
         if (spawnTimer >= spawnTime) {
             Vector3 spawnPosition = transform.position;
             spawnPosition.x += Random.Range(-spawnOffset, spawnOffset);

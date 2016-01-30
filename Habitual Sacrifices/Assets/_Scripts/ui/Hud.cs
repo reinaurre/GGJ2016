@@ -11,7 +11,9 @@ class Hud : MonoBehaviour {
 
     void Update() {
         GameManager gameManager = ServiceLocator.GetGameManager();
+
         scoreText.text = string.Format("{0}", (int)gameManager.Score);
-        timerText.text = string.Format("{0:0.00}", gameManager.LevelTimer);
+        timerText.text = string.Format("{0:0.00}",
+                gameManager.ModifiedLevelTime - gameManager.LevelTimer).Replace(".", ":");
     }
 }

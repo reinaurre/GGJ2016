@@ -3,6 +3,7 @@ using UnityEngine;
 class FallingThing : MonoBehaviour {
     public float fallSpeed = 1.0f;
     public float rotationSpeed = 2.0f;
+    public float maxSpeedUp = 3.0f;
 
     private Quaternion originalRot;
     private Vector3 rotationAxis;
@@ -15,10 +16,13 @@ class FallingThing : MonoBehaviour {
     }
 
     void Update() {
-        Vector3 pos = transform.position;
-        transform.position = new Vector3(pos.x, pos.y - fallSpeed * Time.deltaTime, pos.z);
+        GameManager manager = ServiceLocator.GetGameManager();
+        float speedFactor = manager.GetSpeedFactor(maxSpeedUp);
 
-        rotation += rotationSpeed * Time.deltaTime;
+        Vector3 pos = transform.position;
+        transform.position = new Vector3(pos.x, pos.y - fallSpeed * speedFactor, pos.z);
+
+        rotation += rotationSpeed * speedFactor;
         transform.rotation = Quaternion.AngleAxis(rotation, rotationAxis) * originalRot;
     }
 }

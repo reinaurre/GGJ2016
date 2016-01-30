@@ -4,18 +4,20 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public float scoreOnWin = 1000.0f;
+
     private float _score;
-    public float Score { get; set; }
+    public float Score { get { return _score; } }
     public void IncrementScore(float increase)
     {
-        Score += increase;
+        _score += increase;
     }
 
     private int _lives;
-    public int Lives { get; set; }
+    public int Lives { get { return _lives; } }
     public void LoseLife()
     {
-        Lives--;
+        _lives--;
 
         if (Lives <= 0)
         {
@@ -28,16 +30,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float maxLevelTime = 1500f;
-    private float modifiedLevelTime;
-    public float timeDecrement = 100f;
+    private float _modifiedLevelTime;
+    public float ModifiedLevelTime { get { return _modifiedLevelTime; } }
+
+    public float minLevelTime = 3.0f;
+    public float maxLevelTime = 15.0f;
     private int winComboCount = 0;
 
+    private int levelsCompleted = 0;
+
     private float _levelTimer;
-    public float LevelTimer { get; set; }
+    public float LevelTimer { get { return _levelTimer; } }
 
     private float _gameTimer;
-    public float GameTimer { get; set; }
+    public float GameTimer { get { return _gameTimer; } }
 
     private string[] gameScenes = { "Summoning" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
     private bool gameActive;
@@ -49,10 +55,10 @@ public class GameManager : MonoBehaviour
         Object.DontDestroyOnLoad(this.gameObject);
         gameActive = false;
         levelActive = false;
-        modifiedLevelTime = maxLevelTime;
+        _modifiedLevelTime = maxLevelTime;
         SceneManager.LoadScene("Main");
 
-        Lives = 3;
+        _lives = 3;
 	}
 
     void Update ()
@@ -75,16 +81,16 @@ public class GameManager : MonoBehaviour
 
         if(gameActive)
         {
-            GameTimer += Time.deltaTime;
+            _gameTimer += Time.deltaTime;
 
             if(levelActive)
             {
-                LevelTimer += Time.deltaTime;
+                _levelTimer += Time.deltaTime;
             }
 
-            if(LevelTimer >= modifiedLevelTime)
+            if(LevelTimer >= _modifiedLevelTime)
             {
-                IncrementScore(1000f);
+                IncrementScore(scoreOnWin);
                 winComboCount++;
                 ChangeLevel();
             }
@@ -112,23 +118,23 @@ public class GameManager : MonoBehaviour
     private void ResetGame()
     {
         //Reinitialize anything we need here
-        GameTimer = 0;
-        LevelTimer = 0;
+        _gameTimer = 0;
+        _levelTimer = 0;
         winComboCount = 0;
-        modifiedLevelTime = maxLevelTime;
+        _modifiedLevelTime = maxLevelTime;
 
         SceneManager.LoadScene("Main");
     }
 
     private void ChangeLevel()
     {
+        levelsCompleted++;
         LoadRandomScene();
     }
 
     private void LoadRandomScene()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-
         int currentNum = 0;
 
         if (currentScene != "Main")
@@ -143,12 +149,22 @@ public class GameManager : MonoBehaviour
             num = Random.Range(1, gameScenes.Length);
         }
 
+        _levelTimer = 0.0f;
         SceneManager.LoadScene(num);
     }
 
     void OnLevelWasLoaded(int level)
     {
         levelActive = true;
-        modifiedLevelTime -= (timeDecrement * winComboCount * 0.5f);
+        CalculateNewLevelTime();
+    }
+
+    void CalculateNewLevelTime() {
+        _modifiedLevelTime = Mathf.Pow(1.2f, -levelsCompleted) * (maxLevelTime - minLevelTime) + minLevelTime;
+    }
+
+    public float GetSpeedFactor(float maxSpeedUp) {
+        float fraction = 1.0f - (_modifiedLevelTime - minLevelTime) / (maxLevelTime - minLevelTime);
+        return (1.0f + maxSpeedUp * fraction) * Time.deltaTime;
     }
 }
