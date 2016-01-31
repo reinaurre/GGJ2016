@@ -29,7 +29,9 @@ class Spawner : MonoBehaviour {
     }
 
     void Start() {
-        ServiceLocator.GetSoundSystem().PlaySound("hintSummoning");
+        SoundSystem ss = ServiceLocator.GetSoundSystem();
+        ss.PlaySound("hintSummoning");
+        ss.PlayBackgroundMusic("summon");
     }
 
     void Update() {

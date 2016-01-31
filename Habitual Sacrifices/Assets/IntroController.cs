@@ -13,6 +13,7 @@ public class IntroController : MonoBehaviour {
     if (!played) {
       ServiceLocator.GetSoundSystem().PlaySound("laugh1");
       ServiceLocator.GetSoundSystem().PlaySound("laugh2");
+      ServiceLocator.GetSoundSystem().PlayBackgroundMusic("title");
       played = true;
     }
 	

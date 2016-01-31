@@ -54,7 +54,9 @@ public class simon_Controller : MonoBehaviour {
         objectAnim.SetTrigger("blur_rotation");
         objectCamAnim.SetTrigger("blur_rotation");
 
-        ServiceLocator.GetSoundSystem().PlaySound("hintSimon");
+        SoundSystem ss = ServiceLocator.GetSoundSystem();
+        ss.PlayBackgroundMusic("simon");
+        ss.PlaySound("hintSimon");
     }
 
     void Spawn(string name)

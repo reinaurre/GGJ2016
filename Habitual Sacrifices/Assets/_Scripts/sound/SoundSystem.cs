@@ -12,13 +12,22 @@ public class SoundSystem : MonoBehaviour {
     public AudioSource audioSourcePrefab;
 
     public SoundSystemDef[] soundLibrary = null;
+    public SoundSystemDef[] bgmLibrary = null;
 
     private int current = 0;
     private AudioSource[] sources;
 
+    private AudioSource backgroundMusic;
+    private AudioSource oldBackgroundMusic;
+
     private Dictionary<string, AudioClip> soundMap = new Dictionary<string, AudioClip>(); 
+    private Dictionary<string, AudioClip> bgmMap = new Dictionary<string, AudioClip>(); 
 
     void Awake() {
+        for (int i = 0; i < bgmLibrary.Length; i++) {
+            SoundSystemDef def = bgmLibrary[i];
+            bgmMap[def.soundName] = def.clip;
+        }
         for (int i = 0; i < soundLibrary.Length; i++) {
             SoundSystemDef def = soundLibrary[i];
             soundMap[def.soundName] = def.clip;
@@ -33,12 +42,56 @@ public class SoundSystem : MonoBehaviour {
             source.transform.parent = this.transform;
             sources[i] = source;
         }
+        backgroundMusic = Instantiate(audioSourcePrefab, transform.position, transform.rotation) as AudioSource;
+        backgroundMusic.transform.parent = this.transform;
+        oldBackgroundMusic = Instantiate(audioSourcePrefab, transform.position, transform.rotation) as AudioSource;
+        oldBackgroundMusic.transform.parent = this.transform;
     }
 
     private AudioSource GetNextSource() {
         AudioSource source = sources[current];
         current = (current + 1) % numberOfSources;
         return source;
+    }
+
+    public int PlayBackgroundMusic(string bgmName) {
+      if (!this.enabled) {
+          return 0;
+      }
+      if (!bgmMap.ContainsKey(bgmName)) {
+          Util.Log("Tried to play nonexistent music {0}", bgmName);
+          return -1;
+      }
+
+      if (backgroundMusic == null) {
+        Util.Log("WTF");
+        return -1;
+      }
+
+      if (oldBackgroundMusic.isPlaying) {
+        oldBackgroundMusic.Stop();
+      }
+
+      AudioSource temp = oldBackgroundMusic;
+      oldBackgroundMusic = backgroundMusic;
+      backgroundMusic = temp;
+
+      backgroundMusic.clip = bgmMap[bgmName];
+      backgroundMusic.loop = true;
+      backgroundMusic.volume = 0;
+      backgroundMusic.Play();
+
+      return 0;
+    }
+
+    public void Update() {
+        if (oldBackgroundMusic.isPlaying && oldBackgroundMusic.volume > 0) {
+          oldBackgroundMusic.volume -= 0.01f;
+        }
+
+        if (backgroundMusic.isPlaying && backgroundMusic.volume < 1.0f) {
+          backgroundMusic.volume += 0.01f;
+        }
     }
 
     public int PlaySound(string soundName) {
