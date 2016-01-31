@@ -35,7 +35,9 @@ public class Virgin_Controlls : MonoBehaviour {
             ServiceLocator.GetSoundSystem().PlaySound("paddle");
         }
         prevAxisValue = axisValue;
+    }
 
+    void FixedUpdate() {
         float angVel = 0.0f;
         Quaternion newRotation = Util.smoothDampQuat(flicker.rotation, targetRotation, rotationTime, ref angVel);
         flicker.MoveRotation(newRotation);
