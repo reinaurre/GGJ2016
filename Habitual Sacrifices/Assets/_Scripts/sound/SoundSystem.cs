@@ -45,6 +45,7 @@ public class SoundSystem : MonoBehaviour {
         backgroundMusic = Instantiate(audioSourcePrefab, transform.position, transform.rotation) as AudioSource;
         backgroundMusic.transform.parent = this.transform;
         oldBackgroundMusic = Instantiate(audioSourcePrefab, transform.position, transform.rotation) as AudioSource;
+        oldBackgroundMusic.transform.parent = this.transform;
     }
 
     private AudioSource GetNextSource() {
@@ -67,15 +68,30 @@ public class SoundSystem : MonoBehaviour {
         return -1;
       }
 
-      if (backgroundMusic.isPlaying) {
-        backgroundMusic.Stop();
+      if (oldBackgroundMusic.isPlaying) {
+        oldBackgroundMusic.Stop();
       }
+
+      AudioSource temp = oldBackgroundMusic;
+      oldBackgroundMusic = backgroundMusic;
+      backgroundMusic = temp;
 
       backgroundMusic.clip = bgmMap[bgmName];
       backgroundMusic.loop = true;
+      backgroundMusic.volume = 0;
       backgroundMusic.Play();
 
       return 0;
+    }
+
+    public void Update() {
+        if (oldBackgroundMusic.isPlaying && oldBackgroundMusic.volume > 0) {
+          oldBackgroundMusic.volume -= 0.01f;
+        }
+
+        if (backgroundMusic.isPlaying && backgroundMusic.volume < 1.0f) {
+          backgroundMusic.volume += 0.01f;
+        }
     }
 
     public int PlaySound(string soundName) {
