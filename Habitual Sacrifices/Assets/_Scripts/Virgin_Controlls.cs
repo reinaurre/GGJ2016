@@ -16,6 +16,7 @@ public class Virgin_Controlls : MonoBehaviour {
         this.enabled = false;
         ServiceLocator.GetGameManager().OnLevelBegin.AddListener(OnLevelBegin);
         ServiceLocator.GetGameManager().OnLevelEnd.AddListener(OnLevelEnd);
+        ServiceLocator.GetGameManager().winOnTimeOut = true;
 
         ServiceLocator.GetSoundSystem().PlaySound("hintVirgins");
 

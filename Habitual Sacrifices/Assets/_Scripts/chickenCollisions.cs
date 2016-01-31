@@ -9,16 +9,19 @@ public class chickenCollisions : MonoBehaviour {
 
     void OnTriggerEnter (Collider other)
     {
+        bool playSound = false;
         if (other.gameObject.tag.Equals(fail))
         {
             ServiceLocator.GetGameManager().LoseLife();
+            playSound = true;
         }
         if(other.gameObject.tag.Equals(pass))
         {
             ServiceLocator.GetGameManager().IncrementScore(20);
+            playSound = true;
         }
 
-        if (audioToPlay != null) {
+        if (playSound && audioToPlay != null) {
             ServiceLocator.GetSoundSystem().PlaySound(audioToPlay);
             ServiceLocator.GetSoundSystem().PlayBackgroundMusic("virgins");
         }
