@@ -2,19 +2,11 @@
 using System.Collections;
 
 public class chickenCollisions : MonoBehaviour {
-
     public string fail;
     public string pass;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public string audioToPlay = null;
+
     void OnTriggerEnter (Collider other)
     {
         if (other.gameObject.tag.Equals(fail))
@@ -24,6 +16,10 @@ public class chickenCollisions : MonoBehaviour {
         if(other.gameObject.tag.Equals(pass))
         {
             ServiceLocator.GetGameManager().IncrementScore(20);
+        }
+
+        if (audioToPlay != null) {
+            ServiceLocator.GetSoundSystem().PlaySound(audioToPlay);
         }
     }
 }
