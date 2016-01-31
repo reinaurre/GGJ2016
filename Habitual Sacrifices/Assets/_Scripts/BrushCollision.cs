@@ -19,11 +19,13 @@ public class BrushCollision : MonoBehaviour
     {
 	    if(isColliding)
         {
+            Debug.Log("colliding");
             stayCounter += Time.deltaTime;
         }
 
         if(stayCounter >= 1)
         {
+            Debug.Log("win brush");
             ServiceLocator.GetGameManager().WinLevelEarly();
         }
 
@@ -32,11 +34,13 @@ public class BrushCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
+        Debug.Log("In Trigger");
         isColliding = true;
     }
 
     void OnTriggerExit(Collider collider)
     {
+        Debug.Log("Left Trigger");
         isColliding = false;
         stayCounter = 0;
     }

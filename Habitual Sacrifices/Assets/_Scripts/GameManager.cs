@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     /* Debugging use only */
     public string firstLevel = "";
 
-    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice", "MorningRitual" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
     private bool endPaused;
     private bool intermission;
     private bool beginPaused;
