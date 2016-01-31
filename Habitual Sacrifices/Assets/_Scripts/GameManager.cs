@@ -213,6 +213,9 @@ public class GameManager : MonoBehaviour
         endPaused = false;
         gameActive = false;
         levelActive = false;
+        SoundSystem ss = ServiceLocator.GetSoundSystem();
+        ss.StopBackgroundMusic();
+        ss.PlaySound("scream");
         SceneManager.LoadScene("GameOver");
     }
 
