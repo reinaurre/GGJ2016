@@ -5,6 +5,7 @@ public class BrushCollision : MonoBehaviour
 {
     private float stayCounter;
     private bool isColliding;
+    private bool shouldGrunt = false;
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +20,12 @@ public class BrushCollision : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
+      if (!shouldGrunt) {
+        ServiceLocator.GetSoundSystem().PlaySound("grunt");
+        shouldGrunt = true;
+      }
+
 	    if(isColliding)
         {
             Debug.Log("colliding");
