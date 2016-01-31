@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 class Hud : MonoBehaviour {
+    public Canvas canvas = null;
     public Text scoreText = null;
     public Text timerText = null;
 
@@ -22,6 +23,8 @@ class Hud : MonoBehaviour {
         }
 
         BeginLevel();
+        canvas = GetComponent<Canvas>();
+        canvas.enabled = false;
     }
 
     void Update() {
@@ -50,6 +53,14 @@ class Hud : MonoBehaviour {
         } else {
             loseGroup.alpha = 1.0f;
         }
+    }
+
+    public void EndGame() {
+        canvas.enabled = false;
+    }
+
+    public void BeginGame() {
+        canvas.enabled = true;
     }
 
     public void IntermissionBegin() {
