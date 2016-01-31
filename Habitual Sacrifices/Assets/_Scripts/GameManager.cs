@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public float scoreOnWin = 1000.0f;
 
-    private string[] gameScenes = { "Simon", "Summoning" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+    private string[] gameScenes = { "Simon", "Summoning", "Sacrifice" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
 
 
     private float _score;
@@ -103,6 +103,9 @@ public class GameManager : MonoBehaviour
     {
         gameActive = true;
         LoadRandomScene();
+        SoundSystem ss = ServiceLocator.GetSoundSystem();
+        ss.PlaySound("startGame");
+        
     }
 
     private void ExitGame()
