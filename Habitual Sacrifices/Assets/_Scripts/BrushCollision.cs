@@ -13,6 +13,7 @@ public class BrushCollision : MonoBehaviour
         isColliding = false;
         ServiceLocator.GetGameManager().winOnTimeOut = false;
         ServiceLocator.GetSoundSystem().PlayBackgroundMusic("morning");
+        ServiceLocator.GetSoundSystem().PlaySound("hintBrush");
 	}
 	
 	// Update is called once per frame

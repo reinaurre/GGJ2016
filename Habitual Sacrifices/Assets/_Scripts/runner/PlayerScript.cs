@@ -26,6 +26,7 @@ public class PlayerScript : MonoBehaviour {
 		physicMat.bounciness = 0;
 		physicMat.dynamicFriction = 0.2f;
         ServiceLocator.GetSoundSystem().PlayBackgroundMusic("runner");
+        ServiceLocator.GetSoundSystem().PlaySound("hintRun");
         rb = GetComponent<Rigidbody>();
     }
 
