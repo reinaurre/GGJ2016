@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
         /* Debugging */
         if (firstLevel.Length > 0) {
-            SceneManager.LoadScene(firstLevel);
+            StartGame(firstLevel);
         }
 	}
 
@@ -186,11 +186,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StartGame()
+    private void StartGame(string levelName = null)
     {
         gameActive = true;
         beginPaused = true;
-        LoadRandomScene(true);
+        if (levelName != null) {
+            /* For debugging */
+            SceneManager.LoadScene(levelName);
+        } else {
+            /* Normal path */
+            LoadRandomScene(true);
+        }
         OnLevelLoad.Invoke();
 
         SoundSystem ss = ServiceLocator.GetSoundSystem();
