@@ -56,6 +56,7 @@ class Hud : MonoBehaviour {
         winGroup.alpha = 0.0f;
         loseGroup.alpha = 0.0f;
         intermissionGroup.alpha = 1.0f;
+        ServiceLocator.GetSoundSystem().PlaySound("whiteNoise");
     }
     
     public void LoadLevel() {

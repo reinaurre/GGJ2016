@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public float scoreOnWin = 1000.0f;
     public float pauseTimeOnLevelEnd = 2.0f;
     public float pauseTimeOnLevelBegin = 2.0f;
-    public float intermissionTime = 2.0f;
+    public float intermissionTime = 5.0f;
 
     /* Debugging use only */
     public string firstLevel = "";
@@ -152,6 +152,8 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.0f;
             pauseTimer += Time.unscaledDeltaTime;
             if (pauseTimer >= intermissionTime) {
+                SoundSystem ss = ServiceLocator.GetSoundSystem();
+                ss.StopSound("whiteNoise");
                 _levelTimer = 0.0f;
                 pauseTimer = 0.0f;
                 intermission = false;
@@ -230,6 +232,7 @@ public class GameManager : MonoBehaviour
         _levelTimer = 0;
         winComboCount = 0;
         _modifiedLevelTime = maxLevelTime;
+        levelsCompleted = 0;
         _score = 0;
         _lives = 3;
 
