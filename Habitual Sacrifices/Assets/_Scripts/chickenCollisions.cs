@@ -20,6 +20,7 @@ public class chickenCollisions : MonoBehaviour {
 
         if (audioToPlay != null) {
             ServiceLocator.GetSoundSystem().PlaySound(audioToPlay);
+            ServiceLocator.GetSoundSystem().PlayBackgroundMusic("virgins");
         }
     }
 }
