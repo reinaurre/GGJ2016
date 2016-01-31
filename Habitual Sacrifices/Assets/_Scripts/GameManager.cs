@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public float scoreOnWin = 1000.0f;
 
-    private string[] gameScenes = { "Simon", "Summoning", "Sacrifice" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
 
 
     private float _score;

@@ -7,6 +7,7 @@ public class Virgin_Controlls : MonoBehaviour {
     float axisValue;
 	// Use this for initialization
 	void Start () {
+    ServiceLocator.GetSoundSystem().PlaySound("hintVirgins");
 	
 	}
 	
