@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public float scoreOnWin = 1000.0f;
 
+    private string[] gameScenes = { "Simon", "Summoning" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+
+
     private float _score;
     public float Score { get { return _score; } }
     public void IncrementScore(float increase)
@@ -139,15 +142,15 @@ public class GameManager : MonoBehaviour
 
     private void LoadRandomScene()
     {
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        int nextScene = 0;
+        int currentScene = System.Array.IndexOf(gameScenes, SceneManager.GetActiveScene().name);
 
-        while (nextScene == 0 || nextScene == currentScene) {
-            nextScene = (int)Mathf.Floor(Random.Range(0, SceneManager.sceneCountInBuildSettings-1));
+        int nextScene = Random.Range(0, gameScenes.Length);
+        while (nextScene == currentScene) {
+            nextScene = Random.Range(0, gameScenes.Length);
         }
 
         _levelTimer = 0.0f;
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(gameScenes[nextScene]);
     }
 
     void OnLevelWasLoaded(int level)
