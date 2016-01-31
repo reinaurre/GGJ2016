@@ -54,6 +54,13 @@ public class SoundSystem : MonoBehaviour {
         return source;
     }
 
+    public void StopBackgroundMusic() {
+      backgroundMusic.Stop();
+      backgroundMusic.volume = 0;
+      oldBackgroundMusic.Stop();
+      oldBackgroundMusic.volume = 0;
+    }
+
     public int PlayBackgroundMusic(string bgmName) {
       if (!this.enabled) {
           return 0;
