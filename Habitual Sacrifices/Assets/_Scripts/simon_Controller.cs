@@ -28,7 +28,6 @@ public class simon_Controller : MonoBehaviour {
     float axisOld = 0;
     float axisNew;
     int selectIndex = 0;
-    int selection = 4;
     int newObjectIndex;
 
     // Use this for initialization
@@ -116,21 +115,6 @@ public class simon_Controller : MonoBehaviour {
                     }
                     select.parent = spawnPoints[selectIndex].transform;
                     select.position = spawnPoints[selectIndex].position;
-                }
-
-                Transform[] childrenTransforms = spawnPoints[selectIndex].GetComponentsInChildren<Transform>();
-
-                int childCount = childrenTransforms.Length;
-
-                if (childrenTransforms != null)
-                {
-                    for (int i = childCount - 1; i >= 0; i--)
-                    {
-                        if (childrenTransforms[i].gameObject.tag == "ingredient")
-                        {
-                            selection = i;
-                        }
-                    }
                 }
             }
 
