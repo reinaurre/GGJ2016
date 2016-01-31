@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     /* Debugging use only */
     public string firstLevel = "";
-    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice", "Runner", "MorningRitual" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice", "Runner", "MorningRitual" };
     private bool endPaused;
     private bool intermission;
     private bool beginPaused;
@@ -140,6 +140,11 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Credits");
         }
 
+        if (Input.GetButtonDown("Quit"))
+        {
+            ExitGame();
+        }
+
         if (endPaused)
         {
             Time.timeScale = 0.0f;
@@ -191,7 +196,11 @@ public class GameManager : MonoBehaviour
             if(LevelTimer >= _modifiedLevelTime)
             {
                 IncrementScore(scoreOnWin);
-                EndLevel(winOnTimeOut);
+                if (!winOnTimeOut) {
+                    LoseLife();
+                } else {
+                    EndLevel(true);
+                }
             }
         }
     }
@@ -228,14 +237,15 @@ public class GameManager : MonoBehaviour
         SoundSystem ss = ServiceLocator.GetSoundSystem();
         ss.StopBackgroundMusic();
         ss.PlaySound("scream");
-        SceneManager.LoadScene("GameOver");
+        Util.Log("SAVE");
+        SaveScore();
+
         OnGameEnd.Invoke();
+        SceneManager.LoadScene("GameOver");
     }
 
     private void ResetGame()
     {
-        SaveScore();
-
         //Reinitialize anything we need here
         _gameTimer = 0;
         _levelTimer = 0;
@@ -261,34 +271,26 @@ public class GameManager : MonoBehaviour
             scoresList = scores.OrderBy(v => v).ToList();
         }
 
-        int insertLoc = -1;
-        foreach (int i in scoresList)
+        int insertLoc = scoresList.Count;
+        for(int i = 0; i < scoresList.Count; i++)
         {
-            if (_score >= i)
+            if (_score < scoresList[i])
             {
-                insertLoc++;
-            }
-            else
-            {
+                insertLoc = i;
                 break;
             }
         }
 
-        if(insertLoc == scoresList.Count)
-        {
-            scoresList.Insert(insertLoc, System.Convert.ToInt32(_score));
-        }
-        else if(insertLoc < 0)
-        {
-            return;
-        }
+        scoresList.Insert(insertLoc, System.Convert.ToInt32(_score));
 
         if(scoresList.Count > 5)
         {
             scoresList.RemoveAt(0);
         }
 
-        PlayerPrefs.SetString("HighScores", highScoreStr);
+        string newHighScores = string.Join(",", scoresList.Select(x => x.ToString()).ToArray());
+        Util.Log(newHighScores);
+        PlayerPrefs.SetString("HighScores", newHighScores);
     }
 
     public void WinLevelEarly()
