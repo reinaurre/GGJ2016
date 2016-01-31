@@ -32,8 +32,6 @@ public class QWOP_Controller : MonoBehaviour
         ServiceLocator.GetGameManager().OnLevelBegin.AddListener(OnLevelBegin);
         ServiceLocator.GetGameManager().OnLevelEnd.AddListener(OnLevelEnd);
 
-        ServiceLocator.GetSoundSystem().PlaySound("hintVirgins"); //play frustrated grunts & no BGM
-
         rightHandPosition = rightArm.transform.position;
         leftHandPosition = leftArm.transform.position;
 
