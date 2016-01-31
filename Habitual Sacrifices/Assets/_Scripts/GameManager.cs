@@ -234,7 +234,8 @@ public class GameManager : MonoBehaviour
 
         if(!string.IsNullOrEmpty(highScoreStr))
         {
-            scoresList = highScoreStr.Split(',').Select(int.Parse).OrderBy(v => v).ToList();
+            IEnumerable<int> scores = highScoreStr.Split(',').Select<string,int>(int.Parse); 
+            scoresList = scores.OrderBy(v => v).ToList();
         }
 
         int insertLoc = -1;
