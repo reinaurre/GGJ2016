@@ -4,7 +4,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(HitReceiver))]
 class BadHitHandler : MonoBehaviour {
     public string soundOnHit = "badSound";
-    public float dissapearHeight = -6.0f;
 
     public class InCauldronEvent : UnityEvent<Vector3> {};
     public InCauldronEvent OnInCauldron = new InCauldronEvent();
@@ -20,11 +19,8 @@ class BadHitHandler : MonoBehaviour {
         ServiceLocator.GetGameManager().LoseLife();
     }
 
-    void Update() {
-        if (this.transform.position.y < dissapearHeight) {
-            Destroy(this.gameObject);
-
-            OnInCauldron.Invoke(this.transform.position);
-        }
+    void OnTriggerEnter(Collider collider) {
+        Destroy(this.gameObject);
+        OnInCauldron.Invoke(this.transform.position);
     }
 }
