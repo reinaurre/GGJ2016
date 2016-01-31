@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     private bool gameActive;
     private bool levelActive;
 
+    public bool winOnTimeOut;
+
     [System.Serializable]
     public class LevelEndEvent : UnityEvent<bool> {};
     public LevelEndEvent OnLevelEnd = new LevelEndEvent();
@@ -181,7 +183,7 @@ public class GameManager : MonoBehaviour
             if(LevelTimer >= _modifiedLevelTime)
             {
                 IncrementScore(scoreOnWin);
-                EndLevel(true);
+                EndLevel(winOnTimeOut);
             }
         }
     }
