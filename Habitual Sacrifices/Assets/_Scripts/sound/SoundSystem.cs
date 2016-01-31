@@ -81,7 +81,7 @@ public class SoundSystem : MonoBehaviour {
       string key = bgmName;
       if (bgmName != "title" && bgmName != "gameover")
       {
-        int num = Random.Range(1, 3);
+        int num = Random.Range(1, 20) > 10 ? 1 : 2;
         key = bgmName + num;
         Util.Log(key);
       }
