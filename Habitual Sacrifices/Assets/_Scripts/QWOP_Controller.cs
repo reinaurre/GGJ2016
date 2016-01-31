@@ -7,8 +7,8 @@ public class QWOP_Controller : MonoBehaviour
     public GameObject rightArm;
     public GameObject paste;
 
-    public float speedVar = 1f;
-    public float smoothTime = 2f;
+    private float speedVar = .01f;
+    public float smoothTime = 5f;
     
     private Vector3 rightHandPosition;
     private Vector3 rightHandTarget;
@@ -17,6 +17,14 @@ public class QWOP_Controller : MonoBehaviour
 
     private Vector3 rightVelocity = Vector3.zero;
     private Vector3 leftVelocity = Vector3.zero;
+
+    // BEGIN RANDOM SWAY
+    public float moveAmount = 1;
+    public float rightSwayX;
+    public float rightSwayY;
+    public float leftSwayX;
+    public float leftSwayY;
+    private float quickTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -31,11 +39,22 @@ public class QWOP_Controller : MonoBehaviour
 
         rightHandTarget = rightHandPosition;
         leftHandTarget = leftHandPosition;
-	}
+        quickTimer = 0;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        quickTimer += Time.deltaTime;
+
+        if (quickTimer >= 1f)
+        {
+            rightSwayX = Random.Range(-1, 2) * Time.deltaTime * moveAmount;
+            leftSwayX = Random.Range(-1, 2) * Time.deltaTime * moveAmount;
+            rightSwayY = Random.Range(-1, 2) * Time.deltaTime * moveAmount;
+            leftSwayY = Random.Range(-1, 2) * Time.deltaTime * moveAmount;
+        }
+
         int rightPosX = Input.GetButton("RightPosX") ? 1 : 0;
         int rightNegX = Input.GetButton("RightNegX") ? -1 : 0;
         int rightPosY = Input.GetButton("RightPosY") ? 1 : 0;
@@ -46,10 +65,10 @@ public class QWOP_Controller : MonoBehaviour
         int leftPosY = Input.GetButton("LeftPosY") ? 1 : 0;
         int leftNegY = Input.GetButton("LeftNegY") ? -1 : 0;
 
-        float leftX = (leftNegX + leftPosX);// * speedVar;
-        float leftY = (leftNegY + leftPosY);// * speedVar;
-        float rightX = (rightNegX + rightPosX);// * speedVar;
-        float rightY = (rightNegY + rightPosY);// * speedVar;
+        float leftX = ((leftNegX + leftPosX) * speedVar) + leftSwayX;
+        float leftY = ((leftNegY + leftPosY) * speedVar) + leftSwayY;
+        float rightX = ((rightNegX + rightPosX) * speedVar) + rightSwayX;
+        float rightY = ((rightNegY + rightPosY) * speedVar) + rightSwayY;
 
         rightHandTarget = new Vector3(rightHandPosition.x += rightX, rightHandPosition.y += rightY, rightHandPosition.z);
         leftHandTarget = new Vector3(leftHandPosition.x += leftX, leftHandPosition.y += leftY, leftHandPosition.z);
