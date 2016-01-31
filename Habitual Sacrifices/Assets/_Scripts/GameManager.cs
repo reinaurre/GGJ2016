@@ -49,6 +49,14 @@ public class GameManager : MonoBehaviour
     public bool winOnTimeOut;
 
     [System.Serializable]
+    public class GameBeginEvent : UnityEvent {};
+    public GameBeginEvent OnGameBegin = new GameBeginEvent();
+
+    [System.Serializable]
+    public class GameEndEvent : UnityEvent {};
+    public GameEndEvent OnGameEnd = new GameEndEvent();
+
+    [System.Serializable]
     public class LevelEndEvent : UnityEvent<bool> {};
     public LevelEndEvent OnLevelEnd = new LevelEndEvent();
 
@@ -105,9 +113,8 @@ public class GameManager : MonoBehaviour
         intermission = false;
         beginPaused = false;
         _modifiedLevelTime = maxLevelTime;
-        SceneManager.LoadScene("Main");
-
         _lives = 3;
+        SceneManager.LoadScene("Main");
 
         /* Debugging */
         if (firstLevel.Length > 0) {
@@ -200,6 +207,8 @@ public class GameManager : MonoBehaviour
             /* Normal path */
             LoadRandomScene(true);
         }
+
+        OnGameBegin.Invoke();
         OnLevelLoad.Invoke();
 
         SoundSystem ss = ServiceLocator.GetSoundSystem();
@@ -220,6 +229,7 @@ public class GameManager : MonoBehaviour
         ss.StopBackgroundMusic();
         ss.PlaySound("scream");
         SceneManager.LoadScene("GameOver");
+        OnGameEnd.Invoke();
     }
 
     private void ResetGame()
