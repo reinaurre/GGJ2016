@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour {
 		GetComponent<Collider>().material = physicMat;
 		physicMat.bounciness = 0;
 		physicMat.dynamicFriction = 0.2f;
+        ServiceLocator.GetSoundSystem().PlayBackgroundMusic("runner");
         rb = GetComponent<Rigidbody>();
     }
 

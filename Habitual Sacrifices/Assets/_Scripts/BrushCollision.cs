@@ -12,6 +12,7 @@ public class BrushCollision : MonoBehaviour
         stayCounter = 0;
         isColliding = false;
         ServiceLocator.GetGameManager().winOnTimeOut = false;
+        ServiceLocator.GetSoundSystem().PlayBackgroundMusic("morning");
 	}
 	
 	// Update is called once per frame
