@@ -5,6 +5,11 @@ class Hud : MonoBehaviour {
     public Text scoreText = null;
     public Text timerText = null;
 
+    public CanvasGroup winGroup = null;
+    public CanvasGroup loseGroup = null;
+    public CanvasGroup intermissionGroup = null;
+    public CanvasGroup instructionsGroup = null;
+
     public Image[] deaths = null;
 
     void Start() {
@@ -15,6 +20,8 @@ class Hud : MonoBehaviour {
             color.a = 0.0f;
             deaths[i].color = color;
         }
+
+        BeginLevel();
     }
 
     void Update() {
@@ -35,5 +42,33 @@ class Hud : MonoBehaviour {
                 deaths[i].color = color;
             }
         }
+    }
+
+    public void DisplayMinigameEnd(bool won) {
+        if (won) {
+            winGroup.alpha = 1.0f;
+        } else {
+            loseGroup.alpha = 1.0f;
+        }
+    }
+
+    public void IntermissionBegin() {
+        winGroup.alpha = 0.0f;
+        loseGroup.alpha = 0.0f;
+        intermissionGroup.alpha = 1.0f;
+    }
+    
+    public void LoadLevel() {
+        winGroup.alpha = 0.0f;
+        loseGroup.alpha = 0.0f;
+        intermissionGroup.alpha = 0.0f;
+        instructionsGroup.alpha = 1.0f;
+    }
+    
+    public void BeginLevel() {
+        winGroup.alpha = 0.0f;
+        loseGroup.alpha = 0.0f;
+        intermissionGroup.alpha = 0.0f;
+        instructionsGroup.alpha = 0.0f;
     }
 }

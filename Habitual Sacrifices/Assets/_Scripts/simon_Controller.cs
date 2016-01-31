@@ -34,7 +34,7 @@ public class simon_Controller : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        	
+
 		objectAnim = objectCell.GetComponent <Animator> ();
 		objectCamAnim = objectCam.GetComponent <Animator> ();
         objectCellTransform = objectCell.transform;
@@ -52,6 +52,8 @@ public class simon_Controller : MonoBehaviour {
 
         objectAnim.SetTrigger("blur_rotation");
         objectCamAnim.SetTrigger("blur_rotation");
+
+        ServiceLocator.GetSoundSystem().PlaySound("hintSimon");
     }
 
     void Spawn(string name)
@@ -70,15 +72,16 @@ public class simon_Controller : MonoBehaviour {
             }
         }
     }
-	
+
 	// Update is called once per frame
 	void Update () {
         GameManager manager = ServiceLocator.GetGameManager();
-        
+
         if (Input.GetButtonDown("Action"))
         {
             if(selectIndex == newObjectIndex) {
                 manager.IncrementScore(maxScore * manager.GetTimeFractionLeft());
+                ServiceLocator.GetSoundSystem().PlaySound("yay");
                 manager.WinLevelEarly();
             } else {
                 ServiceLocator.GetSoundSystem().PlaySound("badSound");
@@ -91,6 +94,7 @@ public class simon_Controller : MonoBehaviour {
         if (Input.GetAxis("Horizontal") != axisOld)
         {
             axisNew = Input.GetAxis("Horizontal");
+            ServiceLocator.GetSoundSystem().PlaySound("paddle");
             if(axisOld == 0)
             {
                 if (axisNew > axisOld)
@@ -129,7 +133,7 @@ public class simon_Controller : MonoBehaviour {
                     }
                 }
             }
-            
+
             axisOld = axisNew;
         }
 
