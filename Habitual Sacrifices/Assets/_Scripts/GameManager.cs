@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
         /* Debugging */
         if (firstLevel.Length > 0) {
-            SceneManager.LoadScene(firstLevel);
+            StartGame(firstLevel);
         }
 	}
 
@@ -186,11 +186,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StartGame()
+    private void StartGame(string levelName = null)
     {
         gameActive = true;
         beginPaused = true;
-        LoadRandomScene(true);
+        if (levelName != null) {
+            /* For debugging */
+            SceneManager.LoadScene(levelName);
+        } else {
+            /* Normal path */
+            LoadRandomScene(true);
+        }
         OnLevelLoad.Invoke();
 
         SoundSystem ss = ServiceLocator.GetSoundSystem();
@@ -234,7 +240,8 @@ public class GameManager : MonoBehaviour
 
         if(!string.IsNullOrEmpty(highScoreStr))
         {
-            scoresList = highScoreStr.Split(',').Select(int.Parse).OrderBy(v => v).ToList();
+            IEnumerable<int> scores = highScoreStr.Split(',').Select<string,int>(int.Parse); 
+            scoresList = scores.OrderBy(v => v).ToList();
         }
 
         int insertLoc = -1;
