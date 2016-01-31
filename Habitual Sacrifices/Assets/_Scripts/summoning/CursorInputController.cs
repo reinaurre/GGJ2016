@@ -20,6 +20,7 @@ class CursorInputController : MonoBehaviour {
         this.enabled = false;
         ServiceLocator.GetGameManager().OnLevelBegin.AddListener(() => (this.enabled = true));
         ServiceLocator.GetGameManager().OnLevelEnd.AddListener((x) => (this.enabled = false));
+		ServiceLocator.GetGameManager().winOnTimeOut = true;
     }
 
     void Update() {
