@@ -15,6 +15,7 @@ ModelImporter:
     3300002: toothpaste_paste
     4300000: toothpaste
     4300002: toothpaste_paste
+    4300004: toothbrush_paste:toothpaste
     9500000: //RootNode
   materials:
     importMaterials: 1
