@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public float pauseTimeOnLevelBegin = 2.0f;
     public float intermissionTime = 2.0f;
 
-    private string[] gameScenes = { "Simon", "Summoning", "Sacrifice" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
     private bool endPaused;
     private bool intermission;
     private bool beginPaused;
