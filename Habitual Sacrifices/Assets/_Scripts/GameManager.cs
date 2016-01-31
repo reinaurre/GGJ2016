@@ -143,9 +143,8 @@ public class GameManager : MonoBehaviour
         int nextScene = 0;
 
         while (nextScene == 0 || nextScene == currentScene) {
-            nextScene = Random.Range(0, SceneManager.sceneCountInBuildSettings-1);
+            nextScene = (int)Mathf.Floor(Random.Range(0, SceneManager.sceneCountInBuildSettings-1));
         }
-        Util.Log(nextScene);
 
         _levelTimer = 0.0f;
         SceneManager.LoadScene(nextScene);

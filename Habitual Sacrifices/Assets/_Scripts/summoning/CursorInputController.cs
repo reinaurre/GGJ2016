@@ -9,7 +9,7 @@ class CursorInputController : MonoBehaviour {
     public float yMoveSensitivity = 1.0f;
     public float maxSpeedUp = 3.0f;
 
-    public float castLeeway = 0.5f;
+    public float castLeeway = 0.2f;
     public Transform castPosition = null;
 
     private RectTransform parentRectTransform;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 class SpawnGroup {
@@ -17,8 +18,12 @@ class Spawner : MonoBehaviour {
     private float spawnTimer = 0.0f;
     private float spawnTime = 0.0f;
 
+    public class ObjectInCauldronEvent : UnityEvent<Vector3,bool> {};
+    public ObjectInCauldronEvent OnObjectInCauldron = new ObjectInCauldronEvent();
+
     void Awake() {
         spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+        OnObjectInCauldron.AddListener(AddScoreIfGood);
     }
 
     void Update() {
@@ -37,13 +42,22 @@ class Spawner : MonoBehaviour {
             prefab.gameObject.AddComponent<FallingThing>();
             prefab.gameObject.AddComponent<HitReceiver>();
             if (groupToSpawn.good) {
-                prefab.gameObject.AddComponent<GoodHitHandler>();
+                GoodHitHandler handler = prefab.gameObject.AddComponent<GoodHitHandler>();
+                handler.OnInCauldron.AddListener(x => OnObjectInCauldron.Invoke(x, true));
             } else {
-                prefab.gameObject.AddComponent<BadHitHandler>();
+                BadHitHandler handler = prefab.gameObject.AddComponent<BadHitHandler>();
+                handler.OnInCauldron.AddListener(x => OnObjectInCauldron.Invoke(x, false));
             }
 
             spawnTimer -= spawnTime;
             spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+        }
+    }
+
+    void AddScoreIfGood(Vector3 position, bool good) {
+        GameManager manager = ServiceLocator.GetGameManager();
+        if (good) {
+            manager.IncrementScore(100.0f);
         }
     }
 }
