@@ -228,6 +228,7 @@ public class GameManager : MonoBehaviour
         _levelTimer = 0;
         winComboCount = 0;
         _modifiedLevelTime = maxLevelTime;
+        levelsCompleted = 0;
         _score = 0;
         _lives = 3;
 
