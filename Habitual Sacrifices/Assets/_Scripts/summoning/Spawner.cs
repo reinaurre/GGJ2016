@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 [System.Serializable]
 class SpawnGroup {
-    public bool good = true;
+    public bool organic = true;
     public Transform[] prefabs = null;
 }
 
@@ -15,6 +15,8 @@ class Spawner : MonoBehaviour {
     public float spawnOffset = 10.0f;
     public float maxSpeedUp = 3.0f;
 
+    public float itemScoreWorth = 50.0f;
+
     private float spawnTimer = 0.0f;
     private float spawnTime = 0.0f;
 
@@ -23,7 +25,7 @@ class Spawner : MonoBehaviour {
 
     void Awake() {
         spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
-        OnObjectInCauldron.AddListener(AddScoreIfGood);
+        OnObjectInCauldron.AddListener(AddScoreIfOrganic);
     }
 
     void Start() {
@@ -45,12 +47,13 @@ class Spawner : MonoBehaviour {
 
             prefab.gameObject.AddComponent<FallingThing>();
             prefab.gameObject.AddComponent<HitReceiver>();
-            if (groupToSpawn.good) {
-                GoodHitHandler handler = prefab.gameObject.AddComponent<GoodHitHandler>();
+            if (groupToSpawn.organic) {
+                OrganicHitHandler handler = prefab.gameObject.AddComponent<OrganicHitHandler>();
                 handler.OnInCauldron.AddListener(x => OnObjectInCauldron.Invoke(x, true));
             } else {
-                BadHitHandler handler = prefab.gameObject.AddComponent<BadHitHandler>();
+                NonOrganicHitHandler handler = prefab.gameObject.AddComponent<NonOrganicHitHandler>();
                 handler.OnInCauldron.AddListener(x => OnObjectInCauldron.Invoke(x, false));
+                handler.scoreOnHit = itemScoreWorth;
             }
 
             spawnTimer -= spawnTime;
@@ -58,10 +61,10 @@ class Spawner : MonoBehaviour {
         }
     }
 
-    void AddScoreIfGood(Vector3 position, bool good) {
+    void AddScoreIfOrganic(Vector3 position, bool organic) {
         GameManager manager = ServiceLocator.GetGameManager();
-        if (good) {
-            manager.IncrementScore(100.0f);
+        if (organic) {
+            manager.IncrementScore(itemScoreWorth);
         }
     }
 }

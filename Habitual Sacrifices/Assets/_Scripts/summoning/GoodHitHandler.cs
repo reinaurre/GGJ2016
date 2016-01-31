@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(HitReceiver))]
-class GoodHitHandler : MonoBehaviour {
+class NonOrganicHitHandler : MonoBehaviour {
     public string soundOnHit = "whoosh";
+    public float scoreOnHit = 50.0f;
 
     public class InCauldronEvent : UnityEvent<Vector3> {};
     public InCauldronEvent OnInCauldron = new InCauldronEvent();
@@ -17,7 +18,7 @@ class GoodHitHandler : MonoBehaviour {
         Destroy(this.gameObject);
 
         ServiceLocator.GetSoundSystem().PlaySound(soundOnHit);
-        ServiceLocator.GetGameManager().IncrementScore(100);
+        ServiceLocator.GetGameManager().IncrementScore(scoreOnHit);
     }
 
     void OnTriggerEnter(Collider collider) {

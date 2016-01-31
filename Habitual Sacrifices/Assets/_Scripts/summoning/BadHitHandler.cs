@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(HitReceiver))]
-class BadHitHandler : MonoBehaviour {
+class OrganicHitHandler : MonoBehaviour {
     public string soundOnHit = "badSound";
 
     public class InCauldronEvent : UnityEvent<Vector3> {};
