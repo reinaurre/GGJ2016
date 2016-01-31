@@ -37,7 +37,7 @@ public class SoundSystem : MonoBehaviour {
 
     private AudioSource GetNextSource() {
         AudioSource source = sources[current];
-        current = (current+1)%numberOfSources;
+        current = (current + 1) % numberOfSources;
         return source;
     }
 
