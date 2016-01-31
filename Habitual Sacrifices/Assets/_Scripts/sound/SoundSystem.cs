@@ -65,11 +65,6 @@ public class SoundSystem : MonoBehaviour {
       if (!this.enabled) {
           return 0;
       }
-      if (!bgmMap.ContainsKey(bgmName)) {
-          Util.Log("Tried to play nonexistent music {0}", bgmName);
-          return -1;
-      }
-
       if (backgroundMusic == null) {
         Util.Log("WTF");
         return -1;
@@ -83,7 +78,20 @@ public class SoundSystem : MonoBehaviour {
       oldBackgroundMusic = backgroundMusic;
       backgroundMusic = temp;
 
-      backgroundMusic.clip = bgmMap[bgmName];
+      string key = bgmName;
+      if (bgmName != "title" && bgmName != "gameover")
+      {
+        int num = Random.Range(1, 3);
+        key = bgmName + num;
+        Util.Log(key);
+      }
+
+      if (!bgmMap.ContainsKey(key)) {
+          Util.Log("Tried to play nonexistent music {0}", key);
+          return -1;
+      }
+
+      backgroundMusic.clip = bgmMap[key];
       backgroundMusic.loop = true;
       backgroundMusic.volume = 0;
       backgroundMusic.Play();
