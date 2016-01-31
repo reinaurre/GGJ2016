@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public float pauseTimeOnLevelBegin = 2.0f;
     public float intermissionTime = 2.0f;
 
+    /* Debugging use only */
+    public string firstLevel = "";
+
     private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
     private bool endPaused;
     private bool intermission;
@@ -85,9 +88,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            winComboCount = 0;
-            endPaused = true;
-            OnLevelEnd.Invoke(false);
+            EndLevel(false);
         }
     }
 
@@ -104,6 +105,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Main");
 
         _lives = 3;
+
+        /* Debugging */
+        if (firstLevel.Length > 0) {
+            SceneManager.LoadScene(firstLevel);
+        }
 	}
 
     void Update ()
@@ -173,10 +179,7 @@ public class GameManager : MonoBehaviour
             if(LevelTimer >= _modifiedLevelTime)
             {
                 IncrementScore(scoreOnWin);
-                winComboCount++;
-                levelsCompleted++;
-                OnLevelEnd.Invoke(true);
-                endPaused = true;
+                EndLevel(true);
             }
         }
     }
@@ -212,6 +215,7 @@ public class GameManager : MonoBehaviour
         _levelTimer = 0;
         winComboCount = 0;
         _modifiedLevelTime = maxLevelTime;
+        _lives = 3;
 
         SceneManager.LoadScene("Main");
     }
@@ -222,9 +226,19 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        winComboCount++;
+        EndLevel(true);
+    }
+
+    public void EndLevel(bool won) {
+        if (won) {
+            winComboCount++;
+        } else {
+            winComboCount = 0;
+        }
+
+        levelsCompleted++;
         endPaused = true;
-        OnLevelEnd.Invoke(true);
+        OnLevelEnd.Invoke(won);
     }
 
     private void LoadRandomScene(bool immediately = false)

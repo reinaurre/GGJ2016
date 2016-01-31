@@ -24,6 +24,9 @@ class Spawner : MonoBehaviour {
     void Awake() {
         spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
         OnObjectInCauldron.AddListener(AddScoreIfGood);
+    }
+
+    void Start() {
         ServiceLocator.GetSoundSystem().PlaySound("hintSummoning");
     }
 

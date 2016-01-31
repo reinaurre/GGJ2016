@@ -7,8 +7,11 @@ public class Virgin_Controlls : MonoBehaviour {
     float axisValue;
 	// Use this for initialization
 	void Start () {
-    ServiceLocator.GetSoundSystem().PlaySound("hintVirgins");
-	
+        ServiceLocator.GetSoundSystem().PlaySound("hintVirgins");
+
+        Vector3 rotation = flicker.rotation.eulerAngles;
+        rotation.x = 45;
+        flicker.rotation = Quaternion.Euler(rotation);
 	}
 	
 	// Update is called once per frame
