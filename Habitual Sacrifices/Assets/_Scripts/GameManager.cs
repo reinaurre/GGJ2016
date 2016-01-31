@@ -2,6 +2,8 @@
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -210,14 +212,59 @@ public class GameManager : MonoBehaviour
 
     private void ResetGame()
     {
+        SaveScore();
+
         //Reinitialize anything we need here
         _gameTimer = 0;
         _levelTimer = 0;
         winComboCount = 0;
         _modifiedLevelTime = maxLevelTime;
+        _score = 0;
         _lives = 3;
 
         SceneManager.LoadScene("Main");
+    }
+
+    private void SaveScore()
+    {
+        string highScoreStr = string.Empty;
+        highScoreStr = PlayerPrefs.GetString("HighScores");
+
+        List<int> scoresList = new List<int>();
+
+        if(!string.IsNullOrEmpty(highScoreStr))
+        {
+            scoresList = highScoreStr.Split(',').Select(int.Parse).OrderBy(v => v).ToList();
+        }
+
+        int insertLoc = -1;
+        foreach (int i in scoresList)
+        {
+            if (_score >= i)
+            {
+                insertLoc++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if(insertLoc == scoresList.Count)
+        {
+            scoresList.Insert(insertLoc, System.Convert.ToInt32(_score));
+        }
+        else if(insertLoc < 0)
+        {
+            return;
+        }
+
+        if(scoresList.Count > 5)
+        {
+            scoresList.RemoveAt(0);
+        }
+
+        PlayerPrefs.SetString("HighScores", highScoreStr);
     }
 
     public void WinLevelEarly()

@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Runner : MonoBehaviour {
 
+    public GameObject[] pieces;
+    public float speed;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -11,5 +14,7 @@ public class Runner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+            
+
 	}
 }

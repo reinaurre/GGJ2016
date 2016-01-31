@@ -9,8 +9,8 @@ public class Virgin_Controlls : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         this.enabled = false;
-        ServiceLocator.GetGameManager().OnLevelBegin.AddListener(() => (this.enabled = true));
-        ServiceLocator.GetGameManager().OnLevelEnd.AddListener((x) => (this.enabled = false));
+        ServiceLocator.GetGameManager().OnLevelBegin.AddListener(OnLevelBegin);
+        ServiceLocator.GetGameManager().OnLevelEnd.AddListener(OnLevelEnd);
 
         ServiceLocator.GetSoundSystem().PlaySound("hintVirgins");
 
@@ -30,5 +30,15 @@ public class Virgin_Controlls : MonoBehaviour {
             ServiceLocator.GetSoundSystem().PlaySound("paddle");
         }
         prevAxisValue = axisValue;
+    }
+
+    void OnLevelBegin()
+    {
+        this.enabled = true;
+    }
+
+    void OnLevelEnd(bool won)
+    {
+        this.enabled = false;
     }
 }
