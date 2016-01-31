@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: c1124764e730f584f8454d34ce8aa34b
+timeCreated: 1454205921
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: backnurbsCube2
+    100002: bikeNeck
+    100004: bikeSeat
+    100006: bikeSeatStem
+    100008: bottomCap4
+    100010: bottomCap5
+    100012: bottomCap6
+    100014: bottomCap7
+    100016: frontForks
+    100018: frontnurbsCube2
+    100020: handGrip_L
+    100022: handGrip_R
+    100024: handleBars
+    100026: handleBarStem
+    100028: leftnurbsCube2
+    100030: mainBikeFrame1
+    100032: //RootNode
+    100034: pCube1
+    100036: pCube2
+    100038: pCylinder1
+    100040: pCylinder2
+    100042: rearTyre_L
+    100044: rearTyre_R
+    100046: rearWheel_L
+    100048: rearWheel_R
+    100050: rightnurbsCube2
+    100052: topCap6
+    100054: topCap7
+    100056: topnurbsCube2
+    100058: transform1
+    100060: transform2
+    100062: transform3
+    100064: transform4
+    100066: tyreFront
+    100068: wheelFront
+    400000: backnurbsCube2
+    400002: bikeNeck
+    400004: bikeSeat
+    400006: bikeSeatStem
+    400008: bottomCap4
+    400010: bottomCap5
+    400012: bottomCap6
+    400014: bottomCap7
+    400016: frontForks
+    400018: frontnurbsCube2
+    400020: handGrip_L
+    400022: handGrip_R
+    400024: handleBars
+    400026: handleBarStem
+    400028: leftnurbsCube2
+    400030: mainBikeFrame1
+    400032: //RootNode
+    400034: pCube1
+    400036: pCube2
+    400038: pCylinder1
+    400040: pCylinder2
+    400042: rearTyre_L
+    400044: rearTyre_R
+    400046: rearWheel_L
+    400048: rearWheel_R
+    400050: rightnurbsCube2
+    400052: topCap6
+    400054: topCap7
+    400056: topnurbsCube2
+    400058: transform1
+    400060: transform2
+    400062: transform3
+    400064: transform4
+    400066: tyreFront
+    400068: wheelFront
+    2300000: mainBikeFrame1
+    3300000: mainBikeFrame1
+    4300000: mainBikeFrame1
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
