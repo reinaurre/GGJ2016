@@ -95,7 +95,6 @@ public class simon_Controller : MonoBehaviour {
         if (Input.GetAxis("Horizontal") != axisOld)
         {
             axisNew = Input.GetAxis("Horizontal");
-            ServiceLocator.GetSoundSystem().PlaySound("paddle");
             if(axisOld == 0)
             {
                 if (axisNew > axisOld)
@@ -105,6 +104,7 @@ public class simon_Controller : MonoBehaviour {
                     {
                         selectIndex = 0;
                     }
+                    ServiceLocator.GetSoundSystem().PlaySound("paddle");
                     select.parent = spawnPoints[selectIndex].transform;
                     select.position = spawnPoints[selectIndex].position;
                 }
@@ -115,6 +115,7 @@ public class simon_Controller : MonoBehaviour {
                     {
                         selectIndex = 3;
                     }
+                    ServiceLocator.GetSoundSystem().PlaySound("paddle");
                     select.parent = spawnPoints[selectIndex].transform;
                     select.position = spawnPoints[selectIndex].position;
                 }
