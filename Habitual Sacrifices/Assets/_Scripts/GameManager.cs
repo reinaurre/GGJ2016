@@ -10,12 +10,11 @@ public class GameManager : MonoBehaviour
     public float scoreOnWin = 1000.0f;
     public float pauseTimeOnLevelEnd = 2.0f;
     public float pauseTimeOnLevelBegin = 2.0f;
-    public float intermissionTime = 2.0f;
+    public float intermissionTime = 5.0f;
 
     /* Debugging use only */
     public string firstLevel = "";
-
-    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice", "Runner"};//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
+    private string[] gameScenes = { "Simon", "Summoning", "Virgin Sacrifice", "Runner", "MorningRitual" };//, "Demon", "Virgin", "Morning", "Aztec", "Rune" };
     private bool endPaused;
     private bool intermission;
     private bool beginPaused;
@@ -152,6 +151,8 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.0f;
             pauseTimer += Time.unscaledDeltaTime;
             if (pauseTimer >= intermissionTime) {
+                SoundSystem ss = ServiceLocator.GetSoundSystem();
+                ss.StopSound("whiteNoise");
                 _levelTimer = 0.0f;
                 pauseTimer = 0.0f;
                 intermission = false;

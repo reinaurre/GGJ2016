@@ -109,6 +109,23 @@ public class SoundSystem : MonoBehaviour {
         }
     }
 
+    public void StopSound(string soundName) {
+        if (!this.enabled) {
+            return;
+        }
+
+        if (!soundMap.ContainsKey(soundName)) {
+            Util.Log("Tried to stop nonexistent sound {0}", soundName);
+            return;
+        }
+
+        foreach (AudioSource a in sources) {
+            if (a.clip == soundMap[soundName])
+              if (a.isPlaying)
+                a.Stop();
+        }
+    }
+
     public int PlaySound(string soundName) {
         if (!this.enabled) {
             return 0;
