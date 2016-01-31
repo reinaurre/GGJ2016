@@ -16,6 +16,10 @@ class CursorInputController : MonoBehaviour {
 
     void Start() {
         parentRectTransform = transform.parent.GetComponent<RectTransform>();
+        /* Disable input when the game is paused */
+        this.enabled = false;
+        ServiceLocator.GetGameManager().OnLevelBegin.AddListener(() => (this.enabled = true));
+        ServiceLocator.GetGameManager().OnLevelEnd.AddListener((x) => (this.enabled = false));
     }
 
     void Update() {

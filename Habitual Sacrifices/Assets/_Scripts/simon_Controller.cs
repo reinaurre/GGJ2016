@@ -32,7 +32,9 @@ public class simon_Controller : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        this.enabled = false;
+        ServiceLocator.GetGameManager().OnLevelBegin.AddListener(() => (this.enabled = true));
+        ServiceLocator.GetGameManager().OnLevelEnd.AddListener((x) => (this.enabled = false));
 
 		objectAnim = objectCell.GetComponent <Animator> ();
 		objectCamAnim = objectCam.GetComponent <Animator> ();

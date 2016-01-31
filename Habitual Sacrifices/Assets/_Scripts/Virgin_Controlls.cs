@@ -2,11 +2,15 @@
 using System.Collections;
 
 public class Virgin_Controlls : MonoBehaviour {
-
     public Transform flicker;
     float axisValue;
+
 	// Use this for initialization
 	void Start () {
+        this.enabled = false;
+        ServiceLocator.GetGameManager().OnLevelBegin.AddListener(() => (this.enabled = true));
+        ServiceLocator.GetGameManager().OnLevelEnd.AddListener((x) => (this.enabled = false));
+
         ServiceLocator.GetSoundSystem().PlaySound("hintVirgins");
 
         Vector3 rotation = flicker.rotation.eulerAngles;
@@ -16,7 +20,6 @@ public class Virgin_Controlls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         axisValue = Input.GetAxis("Horizontal");
         if(axisValue != 0)
         {
