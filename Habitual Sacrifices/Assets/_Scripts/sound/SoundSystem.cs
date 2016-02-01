@@ -20,10 +20,16 @@ public class SoundSystem : MonoBehaviour {
     private AudioSource backgroundMusic;
     private AudioSource oldBackgroundMusic;
 
+    public float musicVolume = .2f;
+    public float effectVolume = 1.0f;
+    private float effectVolumeQuieted = 0.1f;
+
     private Dictionary<string, AudioClip> soundMap = new Dictionary<string, AudioClip>(); 
     private Dictionary<string, AudioClip> bgmMap = new Dictionary<string, AudioClip>(); 
 
     void Awake() {
+        effectVolumeQuieted = effectVolume * 0.2f;
+
         for (int i = 0; i < bgmLibrary.Length; i++) {
             SoundSystemDef def = bgmLibrary[i];
             bgmMap[def.soundName] = def.clip;
@@ -104,7 +110,7 @@ public class SoundSystem : MonoBehaviour {
           oldBackgroundMusic.volume -= 0.01f;
         }
 
-        if (backgroundMusic.isPlaying && backgroundMusic.volume < 1.0f) {
+        if (backgroundMusic.isPlaying && backgroundMusic.volume < musicVolume) { //was 1.0f but decreased for clip volume balance
           backgroundMusic.volume += 0.01f;
         }
     }
@@ -140,6 +146,17 @@ public class SoundSystem : MonoBehaviour {
         AudioSource source = GetNextSource();
         source.clip = clip;
         source.loop = false;
+
+        //putting this in for audio balance...
+        if(soundName.Contains("hint"))
+        {
+            source.volume = effectVolume;
+        }
+        else
+        {
+            source.volume = effectVolumeQuieted;
+        }
+
         source.Play();
 
         return current;
