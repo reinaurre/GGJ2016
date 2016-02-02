@@ -198,7 +198,6 @@ public class GameManager : MonoBehaviour
                 if (!winOnTimeOut) {
                     LoseLife();
                 } else {
-                    IncrementScore(scoreOnWin);
                     EndLevel(true);
                 }
             }
@@ -302,6 +301,7 @@ public class GameManager : MonoBehaviour
 
     public void EndLevel(bool won) {
         if (won) {
+            IncrementScore(scoreOnWin);
             winComboCount++;
         } else {
             winComboCount = 0;
