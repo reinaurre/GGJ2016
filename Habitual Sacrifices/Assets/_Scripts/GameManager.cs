@@ -237,7 +237,6 @@ public class GameManager : MonoBehaviour
         SoundSystem ss = ServiceLocator.GetSoundSystem();
         ss.StopBackgroundMusic();
         ss.PlaySound("scream");
-        Util.Log("SAVE");
         SaveScore();
 
         OnGameEnd.Invoke();
@@ -289,7 +288,6 @@ public class GameManager : MonoBehaviour
         }
 
         string newHighScores = string.Join(",", scoresList.Select(x => x.ToString()).ToArray());
-        Util.Log(newHighScores);
         PlayerPrefs.SetString("HighScores", newHighScores);
     }
 

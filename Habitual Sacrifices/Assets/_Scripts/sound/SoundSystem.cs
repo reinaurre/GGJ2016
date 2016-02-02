@@ -89,7 +89,6 @@ public class SoundSystem : MonoBehaviour {
       {
         int num = Random.Range(1, 20) > 10 ? 1 : 2;
         key = bgmName + num;
-        Util.Log(key);
       }
 
       if (!bgmMap.ContainsKey(key)) {
