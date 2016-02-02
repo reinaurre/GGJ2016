@@ -195,7 +195,6 @@ public class GameManager : MonoBehaviour
 
             if(LevelTimer >= _modifiedLevelTime)
             {
-                IncrementScore(scoreOnWin);
                 if (!winOnTimeOut) {
                     LoseLife();
                 } else {
@@ -237,7 +236,6 @@ public class GameManager : MonoBehaviour
         SoundSystem ss = ServiceLocator.GetSoundSystem();
         ss.StopBackgroundMusic();
         ss.PlaySound("scream");
-        Util.Log("SAVE");
         SaveScore();
 
         OnGameEnd.Invoke();
@@ -289,7 +287,6 @@ public class GameManager : MonoBehaviour
         }
 
         string newHighScores = string.Join(",", scoresList.Select(x => x.ToString()).ToArray());
-        Util.Log(newHighScores);
         PlayerPrefs.SetString("HighScores", newHighScores);
     }
 
@@ -304,6 +301,7 @@ public class GameManager : MonoBehaviour
 
     public void EndLevel(bool won) {
         if (won) {
+            IncrementScore(scoreOnWin);
             winComboCount++;
         } else {
             winComboCount = 0;
