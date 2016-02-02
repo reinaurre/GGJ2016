@@ -195,10 +195,10 @@ public class GameManager : MonoBehaviour
 
             if(LevelTimer >= _modifiedLevelTime)
             {
-                IncrementScore(scoreOnWin);
                 if (!winOnTimeOut) {
                     LoseLife();
                 } else {
+                    IncrementScore(scoreOnWin);
                     EndLevel(true);
                 }
             }
