@@ -25,7 +25,7 @@ class ServiceLocator {
     }
 
     public static GameManager GetGameManager() {
-        GetServiceWithTag<GameManager>("manager", ref gameManager);
+        GetServiceWithTag<GameManager>("Manager", ref gameManager);
         return gameManager;
     }
 }
